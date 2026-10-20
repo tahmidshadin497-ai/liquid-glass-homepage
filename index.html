@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101a35">
+<title>Liquid Glass • Start Page</title>
+<style>
+:root{
+  --glass:rgba(224,238,255,.14);
+  --glass-strong:rgba(224,238,255,.20);
+  --stroke:rgba(255,255,255,.28);
+  --text:#f5f8ff;
+  --muted:rgba(235,242,255,.75);
+}
+*{box-sizing:border-box}
+html{min-height:100%;background:#10172c}
+body{
+  margin:0;min-height:100vh;min-height:100dvh;color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(ellipse at 18% 16%,rgba(113,119,255,.65),transparent 38%),
+    radial-gradient(ellipse at 85% 42%,rgba(255,132,188,.45),transparent 35%),
+    radial-gradient(ellipse at 45% 85%,rgba(21,166,220,.40),transparent 42%),
+    linear-gradient(145deg,#0b1428,#1b2b51 50%,#111329);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:-12%;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 30% 25%,#5c6fb7 0,transparent 30%),
+    radial-gradient(ellipse at 70% 70%,#b35f9a 0,transparent 28%),
+    radial-gradient(ellipse at 40% 90%,#116f9c 0,transparent 32%);
+  filter:blur(38px);animation:ambient 14s ease-in-out infinite alternate;
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.06),transparent 35%,rgba(255,255,255,.025) 65%,transparent);
+}
+@keyframes ambient{to{transform:translate3d(3%,-2%,0) scale(1.08)}}
+.page{width:min(100%,760px);margin:auto;padding:env(safe-area-inset-top) 18px calc(28px + env(safe-area-inset-bottom))}
+.glass{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  box-shadow:0 12px 36px rgba(0,0,0,.18),inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 1px rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(24px) saturate(165%);
+  backdrop-filter:blur(24px) saturate(165%);
+}
+.glass:before{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(125deg,rgba(255,255,255,.28),transparent 22%,transparent 62%,rgba(255,255,255,.09));
+  opacity:.8;z-index:-1;
+}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 0}
+.logo{font-size:13px;font-weight:800;letter-spacing:3px;text-shadow:0 2px 16px #fff5}
+.top-actions{display:flex;gap:10px}
+.round{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  color:white;text-decoration:none;font-size:19px;cursor:pointer;
+}
+.intro{text-align:center;padding:48px 0 28px}
+.time{font-size:13px;letter-spacing:2px;color:var(--muted);margin-bottom:12px}
+h1{font-size:clamp(32px,8vw,48px);line-height:1.1;margin:0;font-weight:650;letter-spacing:-1.5px}
+.tagline{margin:12px 0 0;color:var(--muted);font-size:15px}
+.search{
+  display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px 9px 17px;
+  border-radius:999px;min-height:66px;
+}
+.google-g{font-size:27px;font-weight:800;background:conic-gradient(from -45deg,#4285f4 0 25%,#34a853 25% 45%,#fbbc05 45% 66%,#ea4335 66% 82%,#4285f4 82%);color:transparent;background-clip:text;-webkit-background-clip:text}
+.search input{min-width:0;flex:1;border:0;outline:0;background:transparent;color:white;font-size:15px}
+.search input::placeholder{color:rgba(255,255,255,.78)}
+.search button{border:0;background:rgba(255,255,255,.85);color:#17213b;font-weight:750;border-radius:999px;padding:12px 15px}
+.section-title{font-size:12px;letter-spacing:2px;color:var(--muted);margin:28px 3px 13px}
+.shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.shortcut{color:white;text-decoration:none;text-align:center;min-width:0}
+.tile{width:100%;aspect-ratio:1;max-width:86px;margin:0 auto 9px;border-radius:24px;display:grid;place-items:center;font-size:27px}
+.shortcut span:last-child{font-size:12px;color:var(--muted)}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.panel{border-radius:26px;padding:17px;min-width:0}
+.panel h2{font-size:14px;margin:0 0 14px;font-weight:650}
+.history-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid rgba(255,255,255,.13);color:white;text-decoration:none;font-size:13px;min-width:0}
+.history-icon{width:34px;height:34px;flex:0 0 34px;border-radius:12px;background:rgba(255,255,255,.15);display:grid;place-items:center}
+.history-item small{display:block;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis}
+.weather-temp{font-size:34px;font-weight:600;letter-spacing:-1px}
+.weather-place{font-size:12px;color:var(--muted);margin-top:3px}
+.weather-icon{font-size:30px}
+.quote{margin-top:18px;border-radius:26px;padding:19px;display:flex;gap:14px;align-items:center}
+.quote-mark{font-size:29px;opacity:.8}
+.quote p{margin:0;font-size:14px;line-height:1.6}
+.quote small{color:var(--muted)}
+.bottom{display:flex;justify-content:center;gap:12px;margin:24px auto 0}
+.bottom a{color:white;text-decoration:none;min-width:52px;height:46px;display:grid;place-items:center;border-radius:18px;font-size:19px}
+.bottom .active{background:rgba(255,255,255,.2)}
+.note{text-align:center;color:rgba(255,255,255,.55);font-size:10px;letter-spacing:1.5px;margin-top:18px}
+a:active,button:active{transform:scale(.97)}
+@media(min-width:600px){
+ .page{padding-left:28px;padding-right:28px}
+ .intro{padding-top:62px}
+ .shortcuts{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .tile{max-width:94px}
+ .panels{grid-template-columns:1.1fr .9fr}
+}
+@media(max-width:370px){
+ .page{padding-left:12px;padding-right:12px}
+ .shortcuts{gap:7px}
+ .tile{border-radius:19px}
+ .panels{gap:9px}
+ .panel{padding:13px}
+ .weather-temp{font-size:28px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="topbar">
+    <div class="logo">◈ GLASS</div>
+    <div class="top-actions">
+      <a class="glass round" href="https://www.google.com" aria-label="Google account">◉</a>
+      <a class="glass round" href="https://www.google.com/chrome/" aria-label="Chrome">⋮</a>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="time" id="clock">YOUR PERSONAL SPACE</div>
+    <h1 id="greeting">Explore.</h1>
+    <p class="tagline">A little calm in a digital world.</p>
+  </section>
+
+  <form class="glass search" action="https://www.google.com/search" method="GET">
+    <span class="google-g" aria-hidden="true">G</span>
+    <input name="q" type="search" placeholder="Search or type a URL..." autocomplete="off" required aria-label="Search Google">
+    <button type="submit">GO ↗</button>
+  </form>
+
+  <div class="section-title">YOUR SHORTCUTS</div>
+  <nav class="shortcuts" aria-label="Quick links">
+    <a class="shortcut" href="https://www.google.com"><span class="glass tile">🌐</span><span>Google</span></a>
+    <a class="shortcut" href="https://www.youtube.com"><span class="glass tile">▶</span><span>YouTube</span></a>
+    <a class="shortcut" href="https://www.whatsapp.com"><span class="glass tile">✆</span><span>WhatsApp</span></a>
+    <a class="shortcut" href="https://github.com"><span class="glass tile">⌘</span><span>GitHub</span></a>
+    <a class="shortcut" href="https://www.wikipedia.org"><span class="glass tile">W</span><span>Wikipedia</span></a>
+  </nav>
+
+  <section class="panels">
+    <div class="glass panel">
+      <h2>↻ &nbsp; Continue exploring</h2>
+      <a class="history-item" href="https://www.youtube.com"><span class="history-icon">▶</span><span>YouTube<small>youtube.com</small></span></a>
+      <a class="history-item" href="https://github.com"><span class="history-icon">⌘</span><span>GitHub<small>github.com</small></span></a>
+      <a class="history-item" href="https://www.google.com"><span class="history-icon">G</span><span>Google<small>google.com</small></span></a>
+    </div>
+    <div class="glass panel">
+      <h2>✦ &nbsp; Your day</h2>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="weather-icon">☁️</span>
+        <div><div class="weather-temp" id="dateDay">Today</div><div class="weather-place" id="dateText">Make it count.</div></div>
+      </div>
+      <div style="height:1px;background:#ffffff20;margin:17px 0 12px"></div>
+      <div style="font-size:12px;line-height:1.7;color:var(--muted)">Stay curious.<br>Keep building.</div>
+    </div>
+  </section>
+
+  <section class="glass quote">
+    <div class="quote-mark">✧</div>
+    <div><p>“Small steps every day lead to big results.”</p><small>— Your personal start page</small></div>
+  </section>
+
+  <nav class="bottom" aria-label="Navigation">
+    <a class="glass" href="javascript:history.back()" aria-label="Back">‹</a>
+    <a class="glass" href="javascript:history.forward()" aria-label="Forward">›</a>
+    <a class="glass active" href="./index.html" aria-label="Home">⌂</a>
+    <a class="glass" href="https://www.google.com" aria-label="New page">▢</a>
+  </nav>
+  <div class="note">LIQUID GLASS · PERSONAL WEB SPACE</div>
+</main>
+<script>
+function updateClock(){
+ const now=new Date();
+ const time=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+ document.getElementById('clock').textContent=time+'  ·  '+now.toLocaleDateString([], {weekday:'short',month:'short',day:'numeric'});
+ const h=now.getHours();
+ document.getElementById('greeting').textContent=h<12?'Good morning.':h<18?'Good afternoon.':'Good evening.';
+ document.getElementById('dateDay').textContent=now.toLocaleDateString([], {weekday:'short'});
+ document.getElementById('dateText').textContent=now.toLocaleDateString([], {month:'short',day:'numeric'})+' · Make it count.';
+}
+updateClock();setInterval(updateClock,30000);
+</script>
+</body>
+</html>
